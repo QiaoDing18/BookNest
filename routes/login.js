@@ -15,14 +15,14 @@ router.get('/', function(req, res, next) {
     })
 });
 
-router.post('/',(req,res,next)=>{
+router.post('/',(req, res, next)=>{
     var json = generateMsg(req.body);
     json = utils.extend({
         title:'登录界面',
         subtitle:'欢迎登录',
         param : req.body,
         req : req,
-    },json);
+    }, json);
     if(json.code===1){
         if(json.type==='email')
             db.checkIsExistByEmail(req.body.user,(err,rows,fields)=>{
@@ -35,6 +35,7 @@ router.post('/',(req,res,next)=>{
             });
         else{
             db.checkIsExistByUsername(req.body.user,(err,rows,fields)=>{
+                console.log(rows, rows[0].password, json.param.password)
                 if(err){console.error(err);}
                 else
                     if(rows.length===0){
@@ -45,9 +46,17 @@ router.post('/',(req,res,next)=>{
                                     json.code = 0;
                                     json.msgx = '账户与密码不匹配';
                                     res.render('login', json);
-                                }else loginOkHandle(res,req,rows[0].username);
+                                } else if (rows[0].password !== json.param.password) {
+                                    json.code = 0;
+                                    json.msgx = '账户与密码不匹配';
+                                    res.render('login', json);
+                                } else loginOkHandle(res,req,rows[0].username);
                         });
-                    }else loginOkHandle(res,req,rows[0].username);
+                    } else if (rows[0].password !== json.param.password) {
+                        json.code = 0;
+                        json.msgx = '账户与密码不匹配';
+                        res.render('login', json);
+                    } else loginOkHandle(res,req,rows[0].username);
             });
         }
     }else res.render('login',json);
