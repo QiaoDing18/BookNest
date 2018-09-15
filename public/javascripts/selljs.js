@@ -21,7 +21,7 @@
         var data = JSON.parse(pie.dataset.chart)
         var option = {
             title : {
-                text: '周最受欢迎图书',
+                text: '最受欢迎图书',
                 x:'center'
             },
             tooltip : {

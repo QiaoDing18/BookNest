@@ -55,7 +55,7 @@ block content
                 div.col-sm-5
                     div.panel.panel-primary
                         div.panel-heading
-                            h3.panel-title 周最受欢迎图书
+                            h3.panel-title 最受欢迎图书
                         div.panel-body#pie-chart(data-chart='#{JSON.stringify(piechart)}')
             div.panel.panel-primary
                 div.panel-heading
@@ -85,6 +85,5 @@ block content
                   else
                     big.text-danger 暂无销售信息
     script(src='https://cdn.bootcss.com/echarts/3.1.10/echarts.min.js')
-    //script(src='/local/echarts.min.js')
     script(src='/javascripts/selljs.js')
     script(src='/javascripts/popImage.js')
