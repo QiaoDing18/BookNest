@@ -4,11 +4,33 @@ block content
   -var username = req.session.username;
   -var otherBooks = otherRecentBooks;
   div.row
+    div.col-md-12.panel
+      div#myCarousel.carousel.slide
+        ol.carousel-indicators
+          li#myCarousel.active(data-target='#myCarousel' data-slide-to='0')
+          li#myCarousel(data-target='#myCarousel' data-slide-to='1')
+          li#myCarousel(data-target='#myCarousel' data-slide-to='2')
+          li#myCarousel(data-target='#myCarousel' data-slide-to='3')
+        div.carousel-inner
+          div.item.active
+            img(src='/img/1.jpg')
+          div.item
+            img(src='/img/2.jpg')
+          div.item
+            img(src='/img/3.jpg')
+          div.item
+            img(src='/img/4.jpg')
+        a.left.carousel-control(href='#myCarousel' role='button' data-slide='prev')
+          span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+          span.sr-only Previous
+        a.right.carousel-control(href='#myCarousel' role='button' data-slide='next')
+          span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+          span.sr-only Next
+  div.row
     div.col-md-8
       div.panel.panel-default
         div.panel-heading
           h3.panel-title 看看有什么书吧
-            //a.btn-link.pull-right.btn-sm#more-others(href='javascript:;' type='button',style='padding:0') 换一批
         div.panel-body
           if(otherBooks.length===0)
             div.text-danger 对不起，好像没有其他卖家销售图书中。

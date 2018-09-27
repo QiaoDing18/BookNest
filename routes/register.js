@@ -8,7 +8,7 @@ var db = require('../db/users');
 router.post('/', function(req, res, next) {
     var json = generateMsg(req.body);
     json = utils.extend({
-        title:'注册界面',
+        title:'注册',
         subtitle:'欢迎注册',
         req : req,
         param : req.body,
@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
 });
 router.get('/',function (req,res,next) {
     res.render('register', {
-        title:'注册界面',
+        title:'注册',
         subtitle:'欢迎注册',
         req : req,
         param : req.query,
